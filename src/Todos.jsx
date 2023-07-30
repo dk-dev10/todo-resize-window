@@ -1,34 +1,36 @@
-import { memo, useContext } from "react";
+import { useContext } from "react";
 import { TodosContext, todosActions } from "./context";
+import ToDoList from "./component/ToDoList/ToDoList";
 
 
 const Todos = () => {
-  const [todos, dispatch] = useContext(TodosContext);
+  const [state, dispatch] = useContext(TodosContext);
+  const { todos, filtered } = state;
+  const resTodos = filtered !== null ? filtered : todos;
+
+  const addTodo = () => {
+    dispatch(
+      todosActions
+        .addTodo(
+          { title: 'Random list app text', id: Math.random(), status: 'waiting' }
+        )
+    )
+  }
+
+  const removeTodo = (id) => {
+    dispatch(todosActions.removeTodo(id))
+  }
 
   return (
-    <div className="todo-list"
-    >
-      {todos?.map((todo) => (
-        <div key={todo?.id} className={`todo ${todo.status}`}>
-          {todo.title.length > 12 ? (
-            <div className="todo-text">
-              {todo.title.substring(0, 12)}...
-            </div>
-          ) : (
-            <div className="todo-text">{todo.title}</div>
-          )}
-          <div className="todo-controls">
-            {/* <input
-              type="text"
-              value={todo.text}
-              onChange={(e) => handleEditTodo(todo.id, e.target.value)}
-            /> */}
-          </div>
-        </div>
-      ))}
-      <button onClick={() => dispatch(todosActions.addTodo({ title: 'Random', id: Math.random(), status: 'waiting' }))}>Add</button>
+    <div className="todos">
+      <button
+        onClick={addTodo}
+      >
+        Add
+      </button>
+      <ToDoList todos={resTodos} removeTodo={removeTodo} />
     </div >
   )
 }
 
-export default memo(Todos)
+export default Todos
