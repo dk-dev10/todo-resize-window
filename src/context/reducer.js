@@ -43,7 +43,12 @@ export function reducer(state = initialState, action) {
         activeTodo: null
       }
     case "CHANGE__TODO":
-      return state.filter((todo) => todo.id !== action.todo.id);
+      return state.todos.map(todo => {
+        if (action.payload.id === todo.id) {
+          return action.payload
+        }
+        return todo;
+      })
     default:
       return state;
   }
