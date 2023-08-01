@@ -5,7 +5,7 @@ import './App.css';
 import ActiveToDo from './view/ActiveToDo/ActiveToDo';
 import DraggableDiv from './component/dragBox';
 import { TodosProvider } from './context';
-import Todos from './Todos';
+import Todos from './view/ToDos/Todos';
 import TodoFilter from './component/ToDoFilter';
 
 function App() {
@@ -27,7 +27,11 @@ function App() {
         <div className="todoActive">
           <ActiveToDo />
         </div>
-        <DraggableDiv listWidth={listWidth} setListWidth={setListWidth} listWidthSize={listWidthSize} />
+        <DraggableDiv
+          listWidth={listWidth}
+          setListWidth={setListWidth}
+          listWidthSize={listWidthSize}
+        />
       </div>
     </TodosProvider>
   );

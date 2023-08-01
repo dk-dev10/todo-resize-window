@@ -25,6 +25,9 @@ body {
 
 .todosWrapper {
   padding: 0.5rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .resizeBtn {
@@ -64,6 +67,7 @@ body {
 .todoList {
   display: flex;
   flex-direction: column;
+  gap: 0.3rem;
   align-items: flex-start;
   width: 100%;
   position: relative;
@@ -76,6 +80,16 @@ body {
   justify-content: space-between;
   padding: 1rem;
   border: 1px solid #ccc;
+  cursor: pointer;
+  
+
+  &:hover {
+    filter: brightness(95%);
+  }
+}
+
+.todoListItem.active {
+  filter: brightness(85%);
 }
 
 .todoListItem.waiting {
@@ -115,6 +129,11 @@ body {
   height: 1.5rem;
   display: flex;
   justify-content: center;
+  filter: opacity(70%);
+
+  &:hover {
+    filter: opacity(100%);
+  }
 }
 
 .add-todo {
@@ -136,7 +155,7 @@ button {
 
 .searchBar {
   height: 10%;
-  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
 .searchBar input {
