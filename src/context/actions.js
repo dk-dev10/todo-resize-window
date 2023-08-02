@@ -4,3 +4,4 @@ export const clearFilter = () => { return { type: 'CLEAR__FILTER' } };
 export const unselectTodo = () => { return { type: "UNSELECT__TODO" } };
 export const removeTodo = (id) => { return { type: "REMOVE__TODO", payload: id, } };
 export const selectTodo = (id) => { return { type: "SELECT__TODO", payload: id, } };
+export const changeTodo = (todo) => { return { type: "SELECT__TODO", payload: todo, } };

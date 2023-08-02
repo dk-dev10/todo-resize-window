@@ -6,12 +6,13 @@ import TextareaAutosize from "../../component/TextAreaAutoResize/TextAreaAutoRes
 const ActiveToDo = () => {
   const [{ activeTodo }] = useContext(TodosContext);
   const [title, setTitle] = useState('');
-  const [status, setStatus] = useState('waiting');
+  const [status, setStatus] = useState( 'waiting');
 
   useEffect(() => {
     setStatus(activeTodo?.status)
     setTitle(activeTodo?.title)
   }, [activeTodo])
+  
 
   return (
     <div>
