@@ -7,7 +7,7 @@ export const initialState = {
 export function reducer(state = initialState, action) {
   switch (action.type) {
     case "ADD__TODO":
-      const newState = [...state.todos, action.todo];
+      const newState = [...state.todos, action.payload];
       localStorage.setItem('todos', JSON.stringify(newState))
       return { ...state, todos: [...state.todos, action.todo] };
     case "REMOVE__TODO":
