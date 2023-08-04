@@ -64,6 +64,11 @@ body {
   overflow-y: scroll;
 }
 
+.todosHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
 .todoList {
   display: flex;
   flex-direction: column;
@@ -93,15 +98,15 @@ body {
 }
 
 .todoListItem.waiting {
-  background-color: lightgray;
+  background-color: rgb(156, 156, 156);
 }
 
 .todoListItem.progress {
-  background-color: lightblue;
+  background-color: rgb(20, 186, 242);
 }
 
 .todoListItem.done {
-  background-color: #a9dfbf;
+  background-color: #4af28d;
 }
 
 .todoTitle {

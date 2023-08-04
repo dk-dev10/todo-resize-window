@@ -8,16 +8,16 @@ const ToDoList = ({ todos, removeTodo, selectTodoItem, activeClass }) => {
     <div className="todoList">
       {todos?.map((todo) => (
         <div
-          key={todo.id}
+          key={todo?.id}
           className={
-            `todoListItem ${todo.status} 
-            ${todo.id === activeClass
+            `todoListItem ${todo?.status} 
+            ${todo?.id === activeClass
               ? 'active'
               : ''}`
           }
           onClick={() => selectTodoItem(todo.id)}
         >
-          <div className="todoTitle">{todo.title}</div>
+          <div className="todoTitle">{todo?.title}</div>
           <button
             className="todoControls"
             onClick={(event) => handleRemove(event, todo)}

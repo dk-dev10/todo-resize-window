@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import { TodosContext, todosActions } from "../../context";
 import ToDoList from "../../component/ToDoList/ToDoList";
-import { selectTodo } from "../../context/actions";
+import { addTodo, selectTodo } from "../../context/actions";
 
 
 const Todos = () => {
   const [state, dispatch] = useContext(TodosContext);
   const { todos, filtered, activeTodo } = state;
-  const resTodos = filtered !== null ? filtered : todos;  
+  const resTodos = filtered !== null ? filtered : todos;
 
   const selectTodoItem = (id) => {
     dispatch(selectTodo(id))
@@ -19,7 +19,10 @@ const Todos = () => {
 
   return (
     <div className="todos">
-      <h3>ToDo List</h3>
+      <div className="todosHeader">
+        <h3>ToDo List</h3>
+        <button className="btn addBtn" onClick={() => dispatch(addTodo())} >new Todo</button>
+      </div>
       <ToDoList
         todos={resTodos}
         removeTodo={removeTodo}

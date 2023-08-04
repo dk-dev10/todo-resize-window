@@ -1,18 +1,28 @@
 import { useContext, useEffect, useState } from "react"
 import { TodosContext } from "../../context"
-import TextareaAutosize from "../../component/TextAreaAutoResize/TextAreaAutoResize";
+import { changeTodo } from "../../context/actions";
+import SelectToDo from "./SelectToDo";
 
 
 const ActiveToDo = () => {
-  const [{ activeTodo }] = useContext(TodosContext);
+  const [{ activeTodo }, dispatch] = useContext(TodosContext);
   const [title, setTitle] = useState('');
-  const [status, setStatus] = useState( 'waiting');
+  const [status, setStatus] = useState('');
 
   useEffect(() => {
     setStatus(activeTodo?.status)
     setTitle(activeTodo?.title)
   }, [activeTodo])
-  
+
+
+  const handleChangeTodo = () => {
+    const newTodo = {
+      ...activeTodo,
+      title,
+      status
+    }
+    dispatch(changeTodo(newTodo))
+  }
 
   return (
     <div>
@@ -20,17 +30,10 @@ const ActiveToDo = () => {
         activeTodo === null
           ? 'Select ToDo or create a new ToDo'
           : <div className="activeTodoHeader">
-            <TextareaAutosize
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder='Title'
-              value={title}
-            />
-            <select id="selectStatus" value={status} onChange={(e) => setStatus(e.target.value)} >
-              <option value="waiting">Waiting</option>
-              <option value="progress">Progress</option>
-              <option value="done">Done</option>
-            </select>
-
+            <SelectToDo setTitle={setTitle} setStatus={setStatus} title={title} status={status} />
+            <div className="actionBtns">
+              <button className="btn saveBtn" onClick={handleChangeTodo}>Save</button>
+            </div>
           </div>
       }
     </div>

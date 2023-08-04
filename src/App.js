@@ -11,7 +11,7 @@ import TodoFilter from './component/ToDoFilter';
 function App() {
   const [listWidth, setListWidth] = useState(300);
   const listWidthSize = {
-    max: 700,
+    max: 1000,
     min: 250
   }
 

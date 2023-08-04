@@ -7,9 +7,10 @@ export const initialState = {
 export function reducer(state = initialState, action) {
   switch (action.type) {
     case "ADD__TODO":
-      const newState = [...state.todos, action.todo];
+      console.log(action.payload)
+      const newState = { title: '', id: action.payload, status: 'waiting' };
       localStorage.setItem('todos', JSON.stringify(newState))
-      return { ...state, todos: [...state.todos, action.todo] };
+      return { ...state, todos: [...state.todos, newState], activeTodo: newState };
     case "REMOVE__TODO":
       const removeTodo = state.todos.filter((todo) => todo.id !== action.payload)
       localStorage.setItem('todos', JSON.stringify(removeTodo))
@@ -43,18 +44,14 @@ export function reducer(state = initialState, action) {
         activeTodo: null
       }
     case "CHANGE__TODO":
-      return state.map(item => {
-
-        if (item.id === action.id) {
-          return {
-            ...item,
-            visible: !item.visible,
-          }
+      const newTodo = state.todos.map(todo => {
+        if (action.payload.id === todo.id) {
+          return action.payload
         }
-
-        return item
-
-      });
+        return todo;
+      })
+      localStorage.setItem('todos', JSON.stringify(newTodo))
+      return { ...state, todos: newTodo };
     default:
       return state;
   }
